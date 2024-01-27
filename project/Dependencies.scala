@@ -9,7 +9,7 @@ object Dependencies {
     val http4s     = "0.22.15"
     val circe      = "0.14.2"
     val pureConfig = "0.17.4"
-    val sCache     = "3.9.1"
+    val mulesCache = "0.4.1"
 
     val kindProjector  = "0.13.2"
     val logback        = "1.2.3"
@@ -25,7 +25,7 @@ object Dependencies {
     lazy val cats       = "org.typelevel" %% "cats-core"   % Versions.cats
     lazy val catsEffect = "org.typelevel" %% "cats-effect" % Versions.catsEffect
     lazy val fs2        = "co.fs2"        %% "fs2-core"    % Versions.fs2
-    lazy val sCache     = "com.evolution" %% "scache"      % Versions.sCache
+    lazy val mulesCache = "io.chrisdavenport" %% "mules"   % Versions.mulesCache
     lazy val http4sDsl       = http4s("http4s-dsl")
     lazy val http4sServer    = http4s("http4s-blaze-server")
     lazy val http4sClient    = http4s("http4s-blaze-client")

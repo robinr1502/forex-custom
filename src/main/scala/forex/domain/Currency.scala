@@ -39,4 +39,16 @@ object Currency {
     case "USD" => USD
   }
 
+  def toString(c: Currency): String = c match {
+    case AUD => "AUD"
+    case CAD => "CAD"
+    case CHF => "CHF"
+    case EUR => "EUR"
+    case GBP => "GBP"
+    case NZD => "NZD"
+    case JPY => "JPY"
+    case SGD => "SGD"
+    case USD => "USD"
+  }
+
 }

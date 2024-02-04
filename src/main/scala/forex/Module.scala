@@ -3,7 +3,7 @@ package forex
 import cats.effect.{ConcurrentEffect, Timer}
 import forex.config.ApplicationConfig
 import forex.domain.Rate
-import forex.http.HttpClient
+import forex.http.{Client, HttpClient}
 import forex.http.rates.RatesHttpRoutes
 import forex.services._
 import forex.programs._
@@ -19,7 +19,7 @@ class Module[F[_]: ConcurrentEffect: Timer](config: ApplicationConfig, cache: Me
 
   private val clientResource = BlazeClientBuilder[F](ExecutionContext.global)
 
-  private val client = HttpClient[F](clientResource)
+  private val client: Client[F] = HttpClient[F](clientResource)
 
   private val ratesService: RatesService[F] = RatesServices.oneFrameService[F](client, config.oneframe)
 

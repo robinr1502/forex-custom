@@ -7,7 +7,7 @@ import forex.config.OneFrameConfig
 import forex.domain.{OneFrameRatesResponse, Price, Rate, Timestamp}
 import forex.services.rates.Algebra
 import forex.Utilities._
-import forex.http.HttpClient
+import forex.http.Client
 import forex.services.rates.errors.Error
 import forex.services.rates.errors.Error.OneFrameLookupFailed
 import io.circe.Decoder
@@ -17,7 +17,7 @@ import org.typelevel.ci.CIString
 
 
 class OneFrameService[F[_]: ConcurrentEffect](
-                                               httpClient: HttpClient[F],
+                                               httpClient: Client[F],
                                                oneFrameConfig: OneFrameConfig
                                          ) extends Algebra[F] {
 
@@ -41,10 +41,10 @@ class OneFrameService[F[_]: ConcurrentEffect](
       headers = Headers(List(Header.Raw(CIString("token"),
         oneFrameConfig.token)))
     )
-    val req = httpClient.sendReq(request).handleError {
+    val req = httpClient.sendReq(request).handleErrorWith {
       error: Throwable =>
         println("Exception: " + error.getMessage)
-        Left(OneFrameLookupFailed(error.getMessage))
+        OneFrameLookupFailed(error.getMessage).asLeft[List[OneFrameRatesResponse]].pure[F]
     }
     for{
       fib <- req.start

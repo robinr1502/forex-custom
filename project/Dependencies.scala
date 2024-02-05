@@ -1,4 +1,4 @@
-import sbt._
+import sbt.*
 
 object Dependencies {
 
@@ -16,6 +16,8 @@ object Dependencies {
     val scalaCheck     = "1.15.3"
     val scalaTest      = "3.2.7"
     val catsScalaCheck = "0.3.2"
+    val munitHttp4s = "0.8.2"
+    val mockito = "1.17.12"
   }
 
   object Libraries {
@@ -46,6 +48,8 @@ object Dependencies {
     lazy val scalaTest      = "org.scalatest"     %% "scalatest"       % Versions.scalaTest
     lazy val scalaCheck     = "org.scalacheck"    %% "scalacheck"      % Versions.scalaCheck
     lazy val catsScalaCheck = "io.chrisdavenport" %% "cats-scalacheck" % Versions.catsScalaCheck
+    lazy val munitHttp4s = "com.alejandrohdezma" %% "http4s-munit" % Versions.munitHttp4s
+    lazy val mockito = "org.mockito" %% "mockito-scala-cats" % Versions.mockito
   }
 
 }
